@@ -1,0 +1,249 @@
+/* 全局样式 */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu',
+    'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: #F7F7F7;
+  color: #2D3436;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+/* App 容器 */
+.app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  max-width: 600px;
+  margin: 0 auto;
+  background: white;
+}
+
+/* 头部 */
+.app-header {
+  text-align: center;
+  padding: 24px 16px;
+  background: linear-gradient(135deg, #FF6B6B 0%, #FF8E53 100%);
+  color: white;
+}
+
+.app-title {
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.app-subtitle {
+  font-size: 14px;
+  opacity: 0.9;
+}
+
+/* 主内容区 */
+.app-main {
+  flex: 1;
+  padding: 16px;
+  padding-bottom: 80px;
+  overflow-y: auto;
+}
+
+.page {
+  animation: fadeIn 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 转盘页面 */
+.wheel-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 60px;
+  min-height: calc(100vh - 140px - 70px);
+}
+
+.wheel-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.btn-spin {
+  width: 100%;
+  max-width: 280px;
+  height: 56px;
+  background: linear-gradient(135deg, #FF6B6B 0%, #FF8E53 100%);
+  color: white;
+  border: none;
+  border-radius: 28px;
+  font-size: 18px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 4px 16px rgba(255, 107, 107, 0.4);
+  transition: transform 0.1s, box-shadow 0.2s;
+}
+
+.btn-spin:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(255, 107, 107, 0.5);
+}
+
+.btn-spin:active:not(:disabled) {
+  transform: scale(0.95);
+}
+
+.btn-spin:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.loading-text {
+  color: #636E72;
+  font-size: 14px;
+}
+
+/* 结果弹窗 */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  z-index: 1000;
+  animation: fadeIn 0.2s ease-out;
+}
+
+.modal-content {
+  background: white;
+  border-radius: 24px;
+  padding: 32px;
+  text-align: center;
+  max-width: 320px;
+  width: 100%;
+  animation: scaleIn 0.3s ease-out;
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.result-emoji {
+  font-size: 64px;
+  margin-bottom: 16px;
+}
+
+.result-title {
+  font-size: 32px;
+  font-weight: 700;
+  color: #2D3436;
+  margin-bottom: 8px;
+}
+
+.result-subtitle {
+  font-size: 16px;
+  color: #636E72;
+  margin-bottom: 24px;
+}
+
+.btn-modal-close {
+  width: 100%;
+  padding: 14px;
+  background: #FF6B6B;
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* 底部导航 */
+.app-nav {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 600px;
+  display: flex;
+  justify-content: space-around;
+  padding: 8px 0;
+  padding-bottom: max(8px, env(safe-area-inset-bottom));
+  background: white;
+  border-top: 1px solid #E0E0E0;
+  z-index: 100;
+}
+
+.nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 8px 16px;
+  border: none;
+  background: transparent;
+  color: #636E72;
+  font-size: 12px;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.nav-item.active {
+  color: #FF6B6B;
+}
+
+.nav-icon {
+  font-size: 24px;
+}
+
+.nav-label {
+  font-weight: 500;
+}
+
+/* 响应式 */
+@media (min-width: 768px) {
+  .app {
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.1);
+  }
+
+  .app-nav {
+    padding-bottom: 8px;
+  }
+}
+
+@media (max-width: 360px) {
+  .app-title {
+    font-size: 24px;
+  }
+
+  .result-title {
+    font-size: 28px;
+  }
+}
