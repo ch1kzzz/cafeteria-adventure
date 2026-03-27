@@ -1,0 +1,40 @@
+.wheel-of-fortune {
+  position: relative;
+  margin: 0 auto;
+}
+
+.wheel-canvas {
+  display: block;
+  border-radius: 50%;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+  transition: transform 0.2s;
+}
+
+.wheel-of-fortune:hover .wheel-canvas {
+  transform: scale(1.02);
+}
+
+/* 指针 - 在顶部 */
+.wheel-pointer {
+  position: absolute;
+  top: -16px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 24px solid transparent;
+  border-right: 24px solid transparent;
+  border-top: 32px solid #FF6B6B;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+  z-index: 1;
+}
+
+/* 响应式 */
+@media (max-width: 480px) {
+  .wheel-pointer {
+    right: -12px;
+    border-top-width: 20px;
+    border-bottom-width: 20px;
+    border-right-width: 28px;
+  }
+}
